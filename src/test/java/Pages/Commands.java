@@ -28,7 +28,7 @@ public class Commands {
         return findWebElement(locator).getText();
     }
 
-    public String getAttributeValueFromWebElement(By locator, String attribute) {
+    public String getAttributeValueFromWebElement(By locator) {
         return findWebElement(locator).getText();
     }
 
@@ -110,6 +110,11 @@ public class Commands {
                 break;
             }
         }
+    }
+
+    public void scrollByPixel(){
+        JavascriptExecutor js = (JavascriptExecutor) MyDriver.getDriver();
+        js.executeScript("scrollBy(0,900)");
     }
 
 }
