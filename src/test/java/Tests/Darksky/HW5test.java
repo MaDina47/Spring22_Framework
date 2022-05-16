@@ -61,6 +61,7 @@ public class HW5test {
           Assert.assertEquals(hw.getMaxTempText(),hw.getMaxTpTextToCompare(),"Test failed");
 
           MyDriver.quitWindows();
+
       }
 
 
