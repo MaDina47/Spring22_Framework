@@ -1,17 +1,40 @@
 package Pages;
 
 import Web.MyDriver;
+import com.google.common.base.Function;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
 public class Commands {
+    Alert myAlert;
 
     // Create a local method to find WebElement
     public WebElement findWebElement(By locator) {
         return MyDriver.getDriver().findElement(locator);
+    }
+
+    // Create a local method to find WebElement
+    public WebElement findWebElementWithWait(By locator) {
+        Wait fWait = new FluentWait(MyDriver.getDriver())
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofSeconds(1))
+                .ignoring(NoAlertPresentException.class)
+                .ignoring(StaleElementReferenceException.class)
+                .ignoring(ElementClickInterceptedException.class)
+                .withMessage("Fluent wait timeout, waited for 30-seconds");
+
+        WebElement element = (WebElement) fWait.until(new Function<WebDriver, WebElement>() {
+            public WebElement apply(WebDriver driver) {
+                return driver.findElement(locator);
+            }
+        });
+        return element;
     }
 
     // Create a local method to find WebElements
@@ -28,7 +51,7 @@ public class Commands {
         return findWebElement(locator).getText();
     }
 
-    public String getAttributeValueFromWebElement(By locator) {
+    public String getAttributeValueFromWebElement(By locator, String attribute) {
         return findWebElement(locator).getText();
     }
 
@@ -74,6 +97,19 @@ public class Commands {
         }
         return element;
     }
+    public void scrollByPixel(String yValue){
+        JavascriptExecutor js = (JavascriptExecutor) MyDriver.getDriver();
+        //js.executeScript("scrollBy(0,900)");
+        js.executeScript("scrollBy(0," + yValue + ")");
+
+        // method(String a) --> method("0,900)
+        // scrollBy(
+        // 0,900
+        // )
+
+        // method(String a, String b) --> method("0","900")
+        // "scrollBy(" + a + "," + b + ")"
+    }
 
     // custom methods to switch to a window
     public void switchToWindow(String newHandle) {
@@ -112,9 +148,37 @@ public class Commands {
         }
     }
 
-    public void scrollByPixel(){
-        JavascriptExecutor js = (JavascriptExecutor) MyDriver.getDriver();
-        js.executeScript("scrollBy(0,900)");
+    public void switchToAlert() {
+//        WebDriverWait eWait = new WebDriverWait(MyDriver.getDriver(), 5);
+//        eWait.until(ExpectedConditions.alertIsPresent());
+        myAlert = MyDriver.getDriver().switchTo().alert();
     }
 
+    public void clickPositiveActionBtnOnAlert() {
+        if(myAlert == null) {
+            switchToAlert();
+        }
+        myAlert.accept();
+    }
+
+    public void clickNegativeActionBtnOnAlert() {
+        if(myAlert == null) {
+            switchToAlert();
+        }
+        myAlert.dismiss();
+    }
+
+    public String getTextFromAlert() {
+        if(myAlert == null) {
+            switchToAlert();
+        }
+        return myAlert.getText();
+    }
+
+    public void typeInAlert(String data) {
+        if(myAlert == null) {
+            switchToAlert();
+        }
+        myAlert.sendKeys(data);
+    }
 }

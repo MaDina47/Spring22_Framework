@@ -26,7 +26,7 @@ public class HW5Pages extends Commands {
 
     public void timeMachineClick() { findWebElement(timeMachinelc).click();}
 
-    public void scrollToTimeMachineBtnByPixel(){ scrollByPixel();}
+    public void scrollToTimeMachineBtnByPixel(){ scrollByPixel("900");}
 
     public String getAttributeOfCurrentDate(){
         String date = findWebElement(currentDay).getAttribute("data-day");
@@ -41,7 +41,7 @@ public class HW5Pages extends Commands {
      }
 
    // 2
-    public void scrollToTodayBarByPixel(){ scrollByPixel();}
+    public void scrollToTodayBarByPixel(){ scrollByPixel("900");}
 
     public void todayClick() {
         findWebElement(todayLocator).click();}
