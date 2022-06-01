@@ -1,16 +1,11 @@
 package Tests.Darksky;
 
 import Helper.Misc;
-import Pages.Commands;
-import Pages.Darksky.HW5Pages;
+import Pages.Darksky.LandingPageHW5;
 import Web.MyDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class HW5test {
     /**
@@ -26,7 +21,7 @@ public class HW5test {
         MyDriver.launchUrlOnNewWindow("https://darksky.net/");
         Misc.pause(2);
 
-        HW5Pages hw = new HW5Pages();
+        LandingPageHW5 hw = new LandingPageHW5();
         hw.scrollToTimeMachineBtnByPixel();
         Misc.pause(5);
 
@@ -46,7 +41,7 @@ public class HW5test {
       public void verifyIsTempValuesAreTheSame(){
           MyDriver.launchUrlOnNewWindow("https://darksky.net/");
           Misc.pause(2);
-          HW5Pages hw = new HW5Pages();
+          LandingPageHW5 hw = new LandingPageHW5();
 
           hw.scrollToTodayBarByPixel();
           Misc.pause(5);

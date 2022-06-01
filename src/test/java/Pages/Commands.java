@@ -111,6 +111,12 @@ public class Commands {
         // "scrollBy(" + a + "," + b + ")"
     }
 
+    public void scrollToElementIntoView (By locator){
+     WebElement element = MyDriver.getDriver().findElement(locator);
+     JavascriptExecutor executor = (JavascriptExecutor) MyDriver.getDriver();
+     executor.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
     // custom methods to switch to a window
     public void switchToWindow(String newHandle) {
         MyDriver.getDriver().switchTo().window(newHandle);
@@ -180,5 +186,14 @@ public class Commands {
             switchToAlert();
         }
         myAlert.sendKeys(data);
+    }
+
+    public void selectByValue(WebElement element, String value){
+        Select select = new Select(element);
+        select.selectByValue(value);
+    }
+
+    public WebElement returnWebElement(By locator){
+        return MyDriver.getDriver().findElement(locator);
     }
 }
