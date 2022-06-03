@@ -11,6 +11,7 @@ public class LoginErrorPage extends Commands {
 
 
     public boolean isLoginErrorDisplayed() {
+
         return isElementDisplayed(loginErrorLocator);
     }
 

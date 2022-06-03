@@ -1,5 +1,6 @@
 package Tests.Hotels;
 
+import Helper.Misc;
 import Pages.Hotels.LandingPage;
 import Web.MyDriver;
 import org.testng.annotations.Test;
@@ -40,7 +41,6 @@ public class SearchStays {
 
         lpage.selectDateFromAnyMonth("5 July 2022");
     }
-
 
 
 }

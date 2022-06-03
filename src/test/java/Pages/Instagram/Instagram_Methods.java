@@ -18,6 +18,7 @@ public class Instagram_Methods extends Commands {
 
         By instagramLogInBtn = By.xpath("//button[@disabled]");
 
+
         public void clickMultipleTabs(){
             clickIt(fbPay);
             clickIt(oculus);
@@ -64,6 +65,7 @@ public class Instagram_Methods extends Commands {
             return no;
            // Assert.assertFalse(no);
          }
+
 
 
 
