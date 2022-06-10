@@ -34,7 +34,7 @@ public class LoginSD<tab> {
         Assert.assertEquals(lpage.getAttributeOfCurrentDate(),lpage.todayDate(),"test failed");
     }
 
-    @And("^I quit Darksky.com$")
+    @Then("^I quit Darksky.com$")
         public void quit(){
         MyDriver.quitWindows();
     }
