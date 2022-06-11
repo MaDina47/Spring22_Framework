@@ -70,16 +70,17 @@ public class Commands {
         return findWebElement(locator).isEnabled();
     }
 
+    // Create a local method to find if element is displayed
+    public boolean isElementDisplayed(By locator) {
+        return findWebElement(locator).isDisplayed();
+    }
+
+
     // Create a local method to select a value from a dropdown
     public void selectInDropdown(By locator, String dataToSelect) {
         WebElement ddElement = findWebElement(locator);
         Select dropdown = new Select(ddElement);
         dropdown.selectByVisibleText(dataToSelect);
-    }
-
-    // Create a local method to find if element is displayed
-    public boolean isElementDisplayed(By locator) {
-        return findWebElement(locator).isDisplayed();
     }
 
     // Create custom method to scroll

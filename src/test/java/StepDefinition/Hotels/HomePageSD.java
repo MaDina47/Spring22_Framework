@@ -25,7 +25,7 @@ public class HomePageSD {
 
     @Then("^I verify destination error is displayed$")
     public void isErrorDisplayed(){
-        Assert.assertTrue(lpage.isDestinationErorDisplayed());
+        Assert.assertTrue(lpage.isDestinationErrorDisplayed());
         MyDriver.quitWindows();}
 
     @When("^I click on Travelers Box$")
@@ -58,7 +58,6 @@ public class HomePageSD {
     @Then("^I get the text from Travelers box$")
     public void textFromTravelers(){
         beforeText = lpage.getTextOfTravelerBox();
-
     }
 
     @When("^I enter the destination$")
@@ -72,6 +71,9 @@ public class HomePageSD {
         Assert.assertEquals(beforeText,afterText,"both text are matching");
         MyDriver.quitWindows();
     }
+
+
+
 
 
 
