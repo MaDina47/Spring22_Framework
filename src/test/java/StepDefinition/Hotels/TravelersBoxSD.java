@@ -15,30 +15,35 @@ public class TravelersBoxSD {
 //  TC  18
 
     @When("^I click on Travelers$")
-    public void clickTravelersBox()
-    {lpage.travelersBoxClick();}
+    public void clickTravelersBox() {
+        lpage.travelersBoxClick();
+    }
 
     int totalAdults;
+
     @When("^I select “Adults as (.+)$")
-    public void addNumberOfAdults(Integer input){
+    public void addNumberOfAdults(Integer input) {
         lpage.increaseNumberOfAdultsBt(input);
-        totalAdults = input+2;
+        totalAdults = input + 2;
 //        System.out.println(totalAdults);
     }
+
     int totalChildren;
+
     @When("^I select “Children” as (.+)$")
-    public void addNumberOfChildren(Integer input){
+    public void addNumberOfChildren(Integer input) {
         lpage.increaseNumberOfChildrenBt(input);
         totalChildren = input;
     }
 
     @When("^I select first child age: (.+)$")
-    public void addChildrenAge1(String input){
+    public void addChildrenAge1(String input) {
         lpage.addAgeBox1(input);
         Misc.pause(3);
     }
+
     @When("^I select second child age: (.+)$")
-    public void addChildrenAge2(String input){
+    public void addChildrenAge2(String input) {
         if (input.equalsIgnoreCase("Under 1")) {
             input = "0";
         }
@@ -46,24 +51,18 @@ public class TravelersBoxSD {
     }
 
     @Then("^I click Done$")
-    public void clickDoneBt(){
+    public void clickDoneBt() {
         lpage.clickDoneButton();
         Misc.pause(3);
         // MyDriver.quitWindows();
     }
 
     @Then("^I verify total number of guests in sum of adults and children as same as selected on step #3 and #4.$")
-    public void verifyNumberOfTravelers(){
-        int totalGuests = totalAdults+totalChildren;
-        Assert.assertEquals(String.valueOf(totalGuests),lpage.splitText(),"test failed");
+    public void verifyNumberOfTravelers() {
+        int totalGuests = totalAdults + totalChildren;
+        Assert.assertEquals(String.valueOf(totalGuests), lpage.splitText(), "test failed");
         MyDriver.quitWindows();
     }
-
-
-
-
-
-
 
 
 }
