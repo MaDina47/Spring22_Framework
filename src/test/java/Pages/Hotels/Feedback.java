@@ -12,6 +12,35 @@ public class Feedback extends Commands {
     By feedbackErrorLc = By.xpath("//p[contains(text(),'Please fill in ')]");
     By redBoxLc = By.xpath("//fieldset[@style='padding: 5px; border: 2px dotted rgb(204, 0, 0);']");
 
+    By ratingButtons = By.xpath("//label[contains(@for,'page-rating-5')]");
+    By textBox = By.id("verbatim");
+    //textarea[@id='verbatim']
+    By chooseBox = By.id("will-you-return");
+    By thankYouHeader = By.xpath("//h5[contains(text(),'THANK YOU FOR YOUR FE')]");
+
+
+    public void selectStar(String value) {
+        By selectStar = By.xpath("//label[contains(@for,'page-rating-" + value + "')]");
+        clickIt(selectStar);
+    }
+
+    public void priorToVisitSelection(String value){
+//      By selectPriorToVisit = By.xpath("//div[@class='radio-button']//label[@for='booked-here-before-" + value + "']");
+      //By selectPriorToVisit = By.xpath("//div[@class='radio-button']//label[@for='booked-here-before-yes']");
+        By selectPriorToVisit = By.xpath("(//span[contains(text(), '" +value+ "')])[1]");
+        clickIt(selectPriorToVisit);
+    }
+
+    public void accomplishOptionMenu(String value){
+//        By selectAccomplish = By.xpath("//label[@for='were-you-successful-yes']");
+        By selectAccomplish = By.xpath("(//span[contains(text(), '" +value+ "')])[2]");
+        clickIt(selectAccomplish);
+    }
+
+    public boolean thankYouForFeedbackIsDisplayed(){
+        return isElementDisplayed(thankYouHeader);
+//        return getTextOfWebElement(thankYouHeader);
+    }
 
     public void clickFeedback(){
         clickIt(feedbackLocator);
@@ -27,16 +56,12 @@ public class Feedback extends Commands {
         return isElementDisplayed(redBoxLc);
      }
 
-//    public String getColor(){
-//
-//        WebElement wb = findWebElement(redBoxLc);
-//        String value = findWebElement(redBoxLc).getAttribute("style");
-//        String[] spl = value.split("d");
-//        String spl1 = spl[5];
-//        String[] spl2 = spl1.split(";");
-//
-//        return spl2[0];
-//    }
+     public void typeInPageComments(String input){
+        type(textBox,input);
+     }
+     public void selectFromPleaseChooseOne(String input){
+        selectInDropdown(chooseBox,input);
+     }
 
 
 

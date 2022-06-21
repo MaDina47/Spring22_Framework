@@ -3,6 +3,7 @@ package Pages;
 import Web.MyDriver;
 import com.google.common.base.Function;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
@@ -13,6 +14,13 @@ import java.util.Set;
 
 public class Commands {
     Alert myAlert;
+
+    public void mouseHover(By locator){
+        WebElement hover = MyDriver.getDriver().findElement(locator);
+        Actions action = new Actions(MyDriver.getDriver());
+        action.moveToElement(hover).perform();
+
+    }
 
     // Create a local method to find WebElement
     public WebElement findWebElement(By locator) {
@@ -154,6 +162,11 @@ public class Commands {
             }
         }
     }
+
+    public void backToPreviousPage(){
+        MyDriver.getDriver().navigate().back();
+    }
+
 
     public void switchToAlert() {
 //        WebDriverWait eWait = new WebDriverWait(MyDriver.getDriver(), 5);

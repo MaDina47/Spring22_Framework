@@ -12,8 +12,10 @@ import java.util.Set;
 
 public class LandingPage extends Commands {
 
-    //
-    By searchButtonLocator = By.xpath("//button[@data-testid='submit-button']");
+
+//    By searchButtonLocator = By.xpath("//button[@data-testid='submit-button']");
+    By searchButtonLocatorNew = By.xpath("//button[@id='submit_button']");
+
     By destinationErrorLocator = By.xpath("//h3[contains(text(),' continue, please')]");
     By travellersBoxLocator = By.xpath("//button[@data-testid='travelers-field-trigger' and @type='button']");
     By increseChildrenBtLocator = By.xpath("//span[@class='uitk-step-input-button']//*[@aria-label='Increase children in room 1']");
@@ -23,7 +25,10 @@ public class LandingPage extends Commands {
     By childAgeBox2 = By.id("child-age-input-0-1");
     By doneButtonLocator = By.xpath("//button[@data-testid='guests-done-button']");
 
-    By checkInDateBoxLocator = By.id("d1-btn");
+//    By checkInDateBoxLocator = By.id("d1-btn");
+    By checkInDateBoxLocator = By.id("date_form_field-btn");
+
+
     By checkInDisabledDatesLocator = By.xpath("//table[@class='uitk-date-picker-weeks']//button[@disabled]");
     By checkOutDateBoxLocator = By.id("d2-btn");
     By doneCheckInAndOutButton = By.xpath("//button[@data-stid='apply-date-picker']");
@@ -54,7 +59,9 @@ public class LandingPage extends Commands {
     By nextMonthArrow = By.xpath("(//button[@data-stid='date-picker-paging'])[2]");
 
     By destinationInputBoxLocator = By.xpath("//button[@aria-label='Going to']");
-    By destinationInputLocator = By.id("location-field-destination");
+//    By destinationInputLocator = By.id("location-field-destination");
+    By enterTextDestination = By.xpath("//div/input[contains(@class, 'uitk-typeahead-input') and contains(@id,\"destination\")] ");
+
     By destinationSuggestions = By.xpath("//div[@class='uitk-typeahead-results']//div[contains(@class,'truncat') and not(contains(@class,'uitk'))]");
 
     By sighInLocator = By.xpath("//button[contains(text(), 'Sign in' ) and @type='button']");
@@ -83,18 +90,54 @@ public class LandingPage extends Commands {
         for (int i = 0; i < 12; i++) {
             if (getTextOfWebElement(currentMonthYear).equalsIgnoreCase(monthYear)) {
                 clickIt(dayLocator);
+
+
                 break;
             }
             clickNextMonthBtn();
         }
     }
+
+//    public void selectDayMonthYear(String date) {
+//        String monthYear = date.split(" ")[1] + " " + date.split(" ")[2];
+//        String day = date.split(" ")[0];
+//        By dayLocator = By.xpath("(//div[@class='uitk-date-picker-month'])[1]/h2[text()='" + monthYear + "']/following-sibling::table//button[@data-day='" + day + "']");
+//        for (int i = 0; i < 12; i++) {
+//            if (getTextOfWebElement(currentMonthYear).equalsIgnoreCase(monthYear)) {
+//                clickIt(dayLocator);
+//
+//            }
+//            clickNextMonthBtn();
+//            if (getTextOfWebElement(currentMonthYear).equalsIgnoreCase(monthYear)) {
+//                clickIt(dayLocator);
+//
+//                break;
+//            }
+//        }
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void clickCalendarDoneBtn() {
         clickIt(doneCheckInAndOutButton);
         Misc.pause(1);
     }
 
     public void clickOnSearchBt(){
-        clickIt(searchButtonLocator);
+        clickIt(searchButtonLocatorNew);
     }
     public void clickCheckInBox() {
         clickIt(checkInDateBoxLocator);
@@ -167,7 +210,7 @@ public class LandingPage extends Commands {
 
     public void enterDestination(String destination) {
         clickIt(destinationInputBoxLocator);
-        type(destinationInputLocator, destination);
+        type(enterTextDestination, destination);
     }
 
     public void selectFromDestinationSuggestion(String userChoice) {
